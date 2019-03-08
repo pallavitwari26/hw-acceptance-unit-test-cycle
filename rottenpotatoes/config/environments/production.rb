@@ -34,7 +34,7 @@ Rottenpotatoes::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+   config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -60,4 +60,10 @@ Rottenpotatoes::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-end
+if Rails.version >= "4.2.0" 
+   ::Rails.configuration.serve_static_files = true 
+ else 
+   ::Rails.configuration.serve_static_assets = true 
+end 
+ ::Rails.configuration.action_dispatch.x_sendfile_header = nil 
+ end
